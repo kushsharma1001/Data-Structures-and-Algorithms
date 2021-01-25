@@ -26,6 +26,7 @@ Solution:
 	public void run(String... args) throws Exception {
 		
 		long arr[] = new long[] {1,2,5,9};  
+		Arrays.sort(arr);
 		long limit=6;
 
 		OptionalLong max = Arrays.stream(arr).max();
