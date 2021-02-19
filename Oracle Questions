@@ -1,0 +1,4 @@
+1) Find first missing number in an array in O(N) time with no extra space: {2,4,6,5,1,-,1-2,7}  (o(n))  Ans is 3 for this case.
+
+
+2) Find number of rotations in an array in (nLogn):  {5,6,7,8,9,1,2,3,4}  //(o(logn))
