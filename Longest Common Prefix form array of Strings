@@ -1,0 +1,25 @@
+public class Demo {
+
+    public static void main(String args[]){
+        String[] strArr={"sqlblog","javaa2blog","mysqlblog","javaworld","javabean","javatemp"};
+        int longestCommonPrefix = 0;
+        for(int i=0; i< strArr.length; i++){
+            for(int j=i+1; j< strArr.length; j++){
+                int tempLen = lengthOflongestCommonPrefix(strArr[i], strArr[j]);
+                longestCommonPrefix = tempLen>longestCommonPrefix? tempLen: longestCommonPrefix;
+            }
+        }
+        System.out.println(longestCommonPrefix);
+    }
+
+    public static int lengthOflongestCommonPrefix(String str1, String str2){
+        int i=0,j=0;
+        while(i<str1.length() && j<str2.length() && str1.charAt(i) == str2.charAt(j)){
+            i++;j++;
+        }
+        System.out.println("Compared: Str1: [" + str1 +"]" + "         and         STR2: [" + str2 + "]      and length found:    [" + i + "]");
+        return i;
+    }
+
+
+}
