@@ -1,0 +1,19 @@
+import java.io.*;
+
+class MyCode {
+	public static void main (String[] args) {
+		
+    int number = 75;
+    //System.out.println(Integer.toBinaryString(number));
+    
+    
+    StringBuilder str = new StringBuilder();
+    while(number!=0){
+      int rem = number %2;
+      str.append(rem);
+      number/=2;
+    }
+    System.out.println(str.reverse().toString());
+    
+	}
+}
