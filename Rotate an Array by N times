@@ -42,3 +42,29 @@
             System.out.print(element + ",");
         }
     }
+    
+    Aliter for right shift:
+    
+     public void rotate(int[] nums, int k) {
+        
+            int temp[] = new int[k];
+            int p=0;
+             for(int i=nums.length-k; i<nums.length; i++){
+                 temp[p++] = nums[i];
+             }
+        
+            System.out.println("");
+        
+            int x=nums.length-1; int y=nums.length-k-1;
+            for(int j=0; j<nums.length-k; j++){
+                        nums[x--] = nums[y--]; 
+                    }
+                
+            for(int i=0; i<k; i++){
+                nums[i] = temp[i];
+            }
+            for(int e: nums){
+                System.out.print(e + ",");
+            }
+    
+    }
