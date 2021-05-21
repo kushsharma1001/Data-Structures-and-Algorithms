@@ -1,0 +1,44 @@
+### Left rotate an array by K times:
+
+    public void rotate(int[] nums, int k) {
+        int rotated[] = new int[nums.length];
+        k = k>nums.length? k%nums.length: k;
+        
+        for(int i=0; i<nums.length; i++){
+            
+            if(i+k >=nums.length){
+                rotated[i] = nums[i+k-nums.length];
+            }
+            else{
+                rotated[i] = nums[i+k];
+            }
+        }
+        
+        for(int element: rotated){
+            System.out.print(element + ",");
+        }
+    }
+    
+    
+    ### Right rotate an array K times: (Basically if we reverse the input array and perform same Left shift program on it, then it gives answer in reverse order. Finally we reverse the output to give correct answer.)
+    
+     public void rotate(int[] nums, int k) {
+        List<Integer> reverse = Arrays.stream(nums).boxed().collect(Collectors.toList());
+        Collections.reverse(reverse);
+        
+        k = k>nums.length? k%nums.length: k;
+        List<Integer> rotated = new ArrayList(); 
+        for(int i=0; i<nums.length; i++){
+            
+            if(i+k >=nums.length){
+                rotated.add(reverse.get(i+k-nums.length));
+            }
+            else{
+                rotated.add(reverse.get(i+k));
+            }
+        }
+        Collections.reverse(rotated);
+        for(int element: rotated){
+            System.out.print(element + ",");
+        }
+    }
