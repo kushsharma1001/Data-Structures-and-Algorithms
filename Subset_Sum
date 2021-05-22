@@ -9,7 +9,7 @@ Aliter:
 	    long sum = 0;
 	    ArrayList<Integer> maxArray = new ArrayList<Integer>();
 	    ArrayList<Integer> newArray = new ArrayList<Integer>();
-	    for (Integer i : a) {
+	    for (int i : a) {
 	        if (i >= 0) {
 	            sum += i;
 	            newArray.add(i);
