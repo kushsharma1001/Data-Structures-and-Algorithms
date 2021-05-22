@@ -2,3 +2,24 @@
 2) Print all subsets equal to a target sum: https://www.geeksforgeeks.org/perfect-sum-problem-print-subsets-given-sum/
 3) Max sum in contiguous-subarray: https://www.geeksforgeeks.org/largest-sum-contiguous-subarray/
 4) Max sum in contigous array with only non negative elements: https://www.geeksforgeeks.org/largest-sum-contiguous-subarray-having-only-non-negative-elements/
+5) Max sum in contigous array with only non negative elements (with conditions): https://www.thecodingshala.com/2019/04/max-non-negative-subarray-coding-shala.html
+Aliter:
+      int a[] = new int[]{2,3,-1,3,2};
+      long max = 0;
+	    long sum = 0;
+	    ArrayList<Integer> maxArray = new ArrayList<Integer>();
+	    ArrayList<Integer> newArray = new ArrayList<Integer>();
+	    for (Integer i : a) {
+	        if (i >= 0) {
+	            sum += i;
+	            newArray.add(i);
+	        } else {
+	            sum = 0;
+	            newArray = new ArrayList<Integer>();
+	        }
+	        if ((max < sum) || ((max == sum) && (newArray.size() > maxArray.size()))) {
+	            max = sum;
+	            maxArray = newArray;
+	        }
+	    }
+	    return maxArray;
