@@ -1,3 +1,4 @@
 1) Find if array contains a subset with target sum: https://www.geeksforgeeks.org/java-program-for-subset-sum-problem-dp-25/
 2) Print all subsets equal to a target sum: https://www.geeksforgeeks.org/perfect-sum-problem-print-subsets-given-sum/
 3) Max sum in contiguous-subarray: https://www.geeksforgeeks.org/largest-sum-contiguous-subarray/
+4) Max sum in contigous array with only non negative elements: 
