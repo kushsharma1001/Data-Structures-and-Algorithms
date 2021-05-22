@@ -4,7 +4,7 @@
 4) Max sum in contigous array with only non negative elements: https://www.geeksforgeeks.org/largest-sum-contiguous-subarray-having-only-non-negative-elements/
 5) Max sum in contigous array with only non negative elements (with conditions): https://www.thecodingshala.com/2019/04/max-non-negative-subarray-coding-shala.html
 Aliter:
-      int a[] = new int[]{2,3,-1,3,2};
+      int a[] = new int[]{2,3,-1,3,2}; //answer will be 2,3
       long max = 0;
 	    long sum = 0;
 	    ArrayList<Integer> maxArray = new ArrayList<Integer>();
