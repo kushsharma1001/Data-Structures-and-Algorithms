@@ -1,2 +1,50 @@
 Matrix Spiral traversal Recursive: https://www.geeksforgeeks.org/print-a-given-matrix-in-spiral-form/
 Non-recursive: https://www.interviewbit.com/problems/spiral-order-matrix-i/
+
+class Codechef
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+	    int arr[][] = new int[][]{ 
+	                          { 1, 2, 3, 4, 5},
+                            {14,15,16,17,6},
+                            {13,20,19,18,7},
+                            {12,11,10,9, 8}
+                          };
+                          
+       int top=0, bottom = arr.length-1, left=0, right= arr[0].length-1;
+       int dir=0;
+       while(top<=bottom && left <=right){
+           
+           if(dir==0){
+            for(int i=left; i<=right; i++){
+               System.out.print(arr[top][i] + ",");
+            }
+                top++; dir=1;
+           }
+           
+           if(dir==1){
+            for(int i=top; i<=bottom; i++){
+               System.out.print(arr[i][right] + ",");
+            }
+                right--; dir=2;
+           }
+           
+           if(dir==2){
+            for(int i=right; i>=left; i--){
+               System.out.print(arr[bottom][i] + ",");
+            }
+                bottom--; dir=3;
+           }
+           
+           if(dir==3){
+            for(int i=bottom; i>=top; i--){
+               System.out.print(arr[i][left] + ",");
+            }
+                left++; dir=0;
+           }
+
+       }
+
+	}
+}
