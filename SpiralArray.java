@@ -8,7 +8,7 @@ class SpiralArray
                             {14,23,22,21, 8},
                             {13,12,11,10, 9}
                           };
-int col=arrs.length;
+int col=arrs[0].length;
     // Four direction counters of current movement
     // Horizontal right, vertical bottom, horizontal left and vertical top respectively
     int r, b, l, t;
