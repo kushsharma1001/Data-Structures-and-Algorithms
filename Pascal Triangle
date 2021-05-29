@@ -28,3 +28,25 @@ class GFG {
         printPascal(n);
     }
 }
+
+/*
+public class Solution {
+    public ArrayList<ArrayList<Integer>> solve(int A) {
+        
+        ArrayList <ArrayList<Integer>> result = new ArrayList();
+        for(int i=1; i<=A; i++){
+            int C=1;
+            ArrayList<Integer> temp = new ArrayList();
+            for(int j=1; j<=i; j++){
+                //System.out.print(C + " ");
+                temp.add(C);
+                C = C * (i-j)/j;
+            }
+            result.add(temp);
+            //System.out.println("");
+        }
+        return result;
+    }
+}
+
+*/
