@@ -1,1 +1,50 @@
-https://www.geeksforgeeks.org/binary-search/
+1) https://www.geeksforgeeks.org/binary-search/ <br/>
+2) Search an element in sorted but rotated array: https://www.geeksforgeeks.org/search-an-element-in-a-sorted-and-pivoted-array/ <br/>
+
+public class SearchElementInSortedAndRotatedArray {
+ 
+    public static void main(String[] args) {
+        int arr[]={16,19,21,25,3,5,8,10}; //or simply arr = 3,4,5,1,2. see its sorted but rotated. 
+        int elementToFind = 5;
+        System.out.println("Index of element 5: "+ findElementRotatedSortedArray(arr,0,arr.length-1,elementToFind));
+    }
+    
+    public static int findElementRotatedSortedArray(int[] arr,int low,int high,int elementToFind)
+    {
+        int mid=0;
+        while(low<=high)
+        {
+            mid=low + ((high - low) / 2);
+ 
+            if(arr[mid] == elementToFind)
+            {
+                return mid;
+            }
+            if(arr[mid]<=arr[high])
+            {
+                // Right part is sorted
+                if(elementToFind > arr[mid] && elementToFind <=arr[high])
+                {
+                    low=mid+1;
+                }
+                else
+                {
+                    high=mid-1;
+                }
+            }
+            else
+            {
+                // Left part is sorted
+                if(arr[low] <= elementToFind && elementToFind < arr[mid])
+                {
+                    high=mid-1;
+                }
+                else
+                {
+                    low=mid+1;
+                }
+            }
+        }
+        return -1;
+    }
+}
