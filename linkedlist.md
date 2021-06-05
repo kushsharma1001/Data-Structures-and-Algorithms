@@ -16,6 +16,7 @@ class Boot {
         list2.add(200);
         list2.add(201);
         list2.add(202);
+        list2.add(3, -1);
         list2.printList();
         System.out.println("POLLED LAST: " + list2.pollLast());
         System.out.println("POLLED FIRST: " + list2.pollFirst());
@@ -95,6 +96,29 @@ class QueueBasedLinkedList<T> {
                 last = last.next;
             }
             last.next = temp;
+        }
+    }
+
+    public void add(int index, T element){
+
+        if(index<0)
+            return;
+
+        if(index == 0){
+            Node node = new Node(element);
+            node.next = head;
+            head = node;
+        }
+        else{
+            Node temp = head;
+            while(index!=1){
+                temp = temp.next;
+                index--;
+            }
+
+            Node node = new Node(element);
+            node.next = temp.next;
+            temp.next = node;
         }
     }
 
