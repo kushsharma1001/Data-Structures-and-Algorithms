@@ -56,7 +56,7 @@ class StackBasedLinkedList<T> {
         System.out.println("");
     }
 
-    public T pollLast(){  //retrieves and removes first element.  1, 2 , 3 -->  3
+    public T pollLast(){  //retrieves and removes last element.  1, 2 , 3 -->  3
         if(this.head == null)
             return null;
 
@@ -107,7 +107,7 @@ class QueueBasedLinkedList<T> {
         System.out.println("");
     }
 
-    public T pollLast(){  //retrieves and removes first element.  1, 2 , 3 -->  3
+    public T pollLast(){  //retrieves and removes last element.  1, 2 , 3 -->  3
         if(this.head == null)
             return null;
 
