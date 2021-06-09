@@ -1,0 +1,50 @@
+import java.util.*;
+import java.util.stream.Collectors;
+/*
+If input is 21--> print all premutations of 21 keymap:  da, db, dc, ea, eb, ec, fa, fb, fc
+*/
+class Boot {
+
+    private static Map<String, String> map = new HashMap<>();
+    static{
+       map.put("1", "a,b,c");
+    map.put("2", "d,e,f");
+    map.put("3", "g,h,i");
+    map.put("4", "j,k,l");
+    map.put("5", "m,n,o");
+    map.put("6", "p,q,r,s");
+    map.put("7", "t,u");
+    map.put("8", "v,w,x");
+    map.put("9", "y,z");
+    map.put("0,", ".;");
+    }
+
+    public static void main(String args[])
+    {
+        List<String> temp = keyMapPermutations("321");
+        temp.stream().forEach(System.out::println);
+    }
+
+    public static List<String> keyMapPermutations(String str){
+
+        if(str.length() == 1){
+            String keyValues = map.get(str);
+            String [] arr = keyValues.split(",");
+            return Arrays.asList(arr); //gives alpahbets for a specific key like 1 -> abc as list ({a,b,c})
+        }
+
+        char c = str.charAt(0);
+        String ros = str.substring(1);
+
+        List<String> temp = keyMapPermutations(ros);
+
+        String keyValues = map.get(c+"");
+        String [] arr = keyValues.split(",");
+        String result = "";
+        for(String item: arr){
+            result += temp.stream().map(x -> item+x).collect(Collectors.joining(","));
+            result+=",";
+        }
+        return Arrays.asList(result.substring(0, result.length()-1).split(","));
+    }
+}
