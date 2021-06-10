@@ -1,0 +1,32 @@
+import java.util.*;
+
+class Boot {
+
+    public static void main(String args[])
+    {
+        List<String> temp = printSubseq("abc"); //a --> a, ab--> a, b, ab
+        temp.stream().forEach(System.out::println);
+    }
+
+    public static List<String> printSubseq(String str){
+
+        if(str.length() == 0){
+            return Collections.singletonList("");
+        }
+
+        char ch = str.charAt(0);
+        String ros = str.substring(1);
+
+        List<String> temp= printSubseq(ros);
+
+        List<String> result =new ArrayList<>();
+
+        for(String item: temp){
+            result.add("" + item);
+            result.add(ch + item);
+        }
+
+        return result;
+
+    }
+}
