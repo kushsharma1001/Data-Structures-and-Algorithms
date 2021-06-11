@@ -31,20 +31,17 @@ class Boot {
         }
         return total;
     }
-
-
-    public static List<String> climbNStairs_AllPaths(int n, int arr[]){
-
+    
+    public static List<String> climbNStairs_AllPaths(int n, int allowedStepsAtATime[]){
         if(n == 0){
             return Collections.singletonList("");
         }
 
-        String ch = n + "";
-
         List<String> temp = new ArrayList<>();
-        for(int item: arr) {
+
+        for(int item: allowedStepsAtATime) {
             if(n-item >= 0){
-                List<String> prevPaths = climbNStairs_AllPaths(n-item, arr);
+                List<String> prevPaths = climbNStairs_AllPaths(n-item, allowedStepsAtATime);
                 prevPaths = prevPaths.stream().map(e -> item + e).collect(Collectors.toList());
                 temp.addAll(prevPaths);
             }
