@@ -1,0 +1,62 @@
+import javafx.util.Pair;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+/*
+* |(0,0)  (0,1)  (0,2) |
+* |(1,0)  (1,1)  (1,2) |
+* |(2,0)  (2,1)  (2,2) |
+* find all paths from 0,0 to destX and destY
+* */
+class Boot {
+
+    public static void main(String args[])
+    {
+        int srcX = 0, srcY = 0, destX = 2, destY = 2;
+        System.out.println(countPathsInMaze(srcX,srcY, destX,destY));
+
+        List<String> allPaths = getAllPathsInMaze(srcX,srcY, destX, destY);
+        allPaths.stream().forEach(System.out::println);
+    }
+
+    //only downwards and right steps are allowed.
+    public static int countPathsInMaze(int sourceX, int sourceY, int targetX, int targetY){
+
+        if(sourceX == targetX && sourceY == targetY){
+            return 1;
+        }
+
+        int total = 0;
+        if(sourceX < targetX){ //we cant move down if we are already in last row.
+            total+= countPathsInMaze(sourceX+1, sourceY, targetX, targetY);  //taking one step downwards.
+        }
+
+        if(sourceY < targetY){
+            total+= countPathsInMaze(sourceX, sourceY+1, targetX, targetY);  //taking one step right.
+        }
+
+        return total;
+    }
+
+    public static List<String> getAllPathsInMaze(int sourceX, int sourceY, int targetX, int targetY){
+
+        if(sourceX == targetX && sourceY == targetY){
+            return Collections.singletonList("");
+        }
+
+        List<String> temp = new ArrayList<>();
+        if(sourceX < targetX){
+            temp = getAllPathsInMaze(sourceX+1, sourceY, targetX, targetY);  //taking one step downwards.
+            temp = temp.stream().map(e -> "v" + e).collect(Collectors.toList());
+        }
+        if(sourceY < targetY){
+            List<String> horizontalPaths = getAllPathsInMaze(sourceX, sourceY+1, targetX, targetY);  //taking one step right.
+            horizontalPaths = horizontalPaths.stream().map(e -> "h" + e).collect(Collectors.toList());
+            temp.addAll(horizontalPaths);
+        }
+
+        return temp;
+    }
+}
