@@ -1,0 +1,71 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+/*
+* |(0,0)  (0,1)  (0,2) |
+* |(1,0)  (1,1)  (1,2) |
+* |(2,0)  (2,1)  (2,2) |
+* find all paths from 0,0 to destX and destY given that you can move any steps to the right or any steps to the downwards or any steps diagonally.
+* */
+class Boot {
+
+    public static void main(String args[])
+    {
+        String str = "abcd";
+        System.out.println("Subsequences found: " + countAllSubsequences(str, ""));
+        printAllSubsequences(str, "");
+        System.out.println(getAllSubsequences(str));
+    }
+
+    //only downwards and right steps are allowed.
+    public static int countAllSubsequences(String str, String ans){
+
+        if(str.length() == 0){
+            return 1;
+        }
+
+        char c = str.charAt(0);
+        String ros = str.substring(1);
+
+        int total=0;
+        total+= countAllSubsequences(ros, ans+"");
+        total+= countAllSubsequences(ros, ans+c);
+        return total;
+    }
+
+    public static void printAllSubsequences(String str, String ans){ //optimised as we just print answers and do not maintain any list.
+
+        if(str.length() == 0){
+            System.out.println(ans);
+            return;
+        }
+
+        char c = str.charAt(0);
+        String ros = str.substring(1);
+
+        printAllSubsequences(ros, ans+"");
+        printAllSubsequences(ros, ans+c);
+
+    }
+
+    public static List<String> getAllSubsequences(String str){  //Less optimized solution as we maintain a list instead of just printing. Takes more memory
+
+        if(str.length() == 0){
+            return Collections.singletonList("");
+        }
+
+        char c = str.charAt(0);
+        String ros = str.substring(1);
+
+        List<String> result = new ArrayList<>();
+
+        List<String> list = getAllSubsequences(ros);
+        for(String item: list){
+            result.add("" + item);
+            result.add(c + item);
+        }
+
+        return result;
+    }
+}
