@@ -1,3 +1,4 @@
+import javax.xml.crypto.dsig.spec.XSLTTransformParameterSpec;
 import java.util.*;
 import java.util.stream.Collectors;
 /*
@@ -7,22 +8,25 @@ class Boot {
 
     private static Map<String, String> map = new HashMap<>();
     static{
-       map.put("1", "a,b,c");
-    map.put("2", "d,e,f");
-    map.put("3", "g,h,i");
-    map.put("4", "j,k,l");
-    map.put("5", "m,n,o");
-    map.put("6", "p,q,r,s");
-    map.put("7", "t,u");
-    map.put("8", "v,w,x");
-    map.put("9", "y,z");
-    map.put("0,", ".;");
+        map.put("1", "a,b,c");
+        map.put("2", "d,e,f");
+        map.put("3", "g,h,i");
+        map.put("4", "j,k,l");
+        map.put("5", "m,n,o");
+        map.put("6", "p,q,r,s");
+        map.put("7", "t,u");
+        map.put("8", "v,w,x");
+        map.put("9", "y,z");
+        map.put("0,", ".;");
     }
 
     public static void main(String args[])
     {
-        List<String> temp = keyMapPermutations("321");
-        temp.stream().forEach(System.out::println);
+        String str = "12";
+        List<String> temp = keyMapPermutations(str);
+        System.out.println(temp);
+
+        printKeyMapPermutations(str, ""); //more optimized solution as no list is maintained. Hence, less memory needed to solve.
     }
 
     public static List<String> keyMapPermutations(String str){
@@ -47,4 +51,20 @@ class Boot {
         }
         return Arrays.asList(result.substring(0, result.length()-1).split(","));
     }
+
+    public static void printKeyMapPermutations(String str, String ans){
+
+        if(str == null || str.isEmpty()  || str.length() == 0){
+          System.out.println(ans);
+          return;
+        }
+
+        char c = str.charAt(0);
+        String ros = str.substring(1);
+
+        String arr[] = map.get(c+"").split(",");
+        for(String item: arr)
+            printKeyMapPermutations(ros,ans+item);
+    }
+
 }
