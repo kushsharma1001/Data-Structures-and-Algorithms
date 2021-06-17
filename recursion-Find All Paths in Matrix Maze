@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 * |(0,0)  (0,1)  (0,2) |
 * |(1,0)  (1,1)  (1,2) |
 * |(2,0)  (2,1)  (2,2) |
-* find all paths from 0,0 to destX and destY
+* find all paths from 0,0 to destX and destY given that you can take only one step/jump at a time.
 * */
 class Boot {
 
