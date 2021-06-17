@@ -14,7 +14,9 @@ class Boot {
         int n = climbNStairs(no, steps);
         System.out.println(paths.size() + " paths found to go to " + no + "th stair.");
         System.out.println(n + " paths are: ");
-        paths.stream().forEach(System.out::println);
+        System.out.println(paths);
+
+        climbNStairs_AllPaths_Optimized(no, steps, "");
     }
 
     public static int climbNStairs(int n, int arr[]){
@@ -31,7 +33,7 @@ class Boot {
         }
         return total;
     }
-    
+
     public static List<String> climbNStairs_AllPaths(int n, int allowedStepsAtATime[]){
         if(n == 0){
             return Collections.singletonList("");
@@ -47,6 +49,19 @@ class Boot {
             }
         }
         return temp;
+    }
+
+    public static void climbNStairs_AllPaths_Optimized(int n, int allowedStepsAtATime[], String ans){
+        if(n == 0){
+            System.out.println(ans);
+            return;
+        }
+
+        for(int item: allowedStepsAtATime) {
+            if(n-item >= 0){
+                climbNStairs_AllPaths_Optimized(n-item, allowedStepsAtATime, ans + item);
+            }
+        }
     }
 }
 /* {1,2} are allowed then, n= 0 --> 1, 1 ---> 1,  2---> 2,  3---> 3,  4---> 1111,112,121,211,22
