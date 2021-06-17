@@ -5,11 +5,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 /*
-* |(0,0)  (0,1)  (0,2) |
-* |(1,0)  (1,1)  (1,2) |
-* |(2,0)  (2,1)  (2,2) |
-* find all paths from 0,0 to destX and destY given that you can take only one step/jump at a time.
-* */
+ * |(0,0)  (0,1)  (0,2) |
+ * |(1,0)  (1,1)  (1,2) |
+ * |(2,0)  (2,1)  (2,2) |
+ * find all paths from 0,0 to destX and destY given that you can take only one step/jump at a time.
+ * */
 class Boot {
 
     public static void main(String args[])
@@ -18,7 +18,9 @@ class Boot {
         System.out.println(countPathsInMaze(srcX,srcY, destX,destY));
 
         List<String> allPaths = getAllPathsInMaze(srcX,srcY, destX, destY);
-        allPaths.stream().forEach(System.out::println);
+        System.out.println(allPaths);
+
+        getAllPathsInMaze_Optimized(srcX, srcY, destX, destY, "");
     }
 
     //only downwards and right steps are allowed.
@@ -58,5 +60,20 @@ class Boot {
         }
 
         return temp;
+    }
+
+    public static void getAllPathsInMaze_Optimized(int sourceX, int sourceY, int targetX, int targetY, String ans){
+
+        if(sourceX == targetX && sourceY == targetY){
+            System.out.println(ans);
+            return;
+        }
+
+        if(sourceX < targetX){
+            getAllPathsInMaze_Optimized(sourceX+1, sourceY, targetX, targetY, ans+"v");  //taking one step downwards.
+        }
+        if(sourceY < targetY){
+            getAllPathsInMaze_Optimized(sourceX, sourceY+1, targetX, targetY, ans+"h");  //taking one step right.
+        }
     }
 }
