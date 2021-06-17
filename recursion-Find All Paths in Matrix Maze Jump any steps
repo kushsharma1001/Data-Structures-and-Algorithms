@@ -5,11 +5,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 /*
-* |(0,0)  (0,1)  (0,2) |
-* |(1,0)  (1,1)  (1,2) |
-* |(2,0)  (2,1)  (2,2) |
-* find all paths from 0,0 to destX and destY given that you can move any steps to the right or any steps to the downwards or any steps diagonally.
-* */
+ * |(0,0)  (0,1)  (0,2) |
+ * |(1,0)  (1,1)  (1,2) |
+ * |(2,0)  (2,1)  (2,2) |
+ * find all paths from 0,0 to destX and destY given that you can move any steps to the right or any steps to the downwards or any steps diagonally.
+ * */
 class Boot {
 
     public static void main(String args[])
@@ -18,6 +18,8 @@ class Boot {
         System.out.println("Paths found: " + countPathsInMaze(srcX,srcY, destX,destY));
         List<String> allPaths = getAllPathsInMaze(srcX,srcY, destX, destY);
         System.out.println(allPaths.size() + " paths are: " + allPaths);
+
+        getAllPathsInMaze_Optimized(srcX, srcY, destX, destY, "");
     }
 
     //only downwards and right steps are allowed.
@@ -88,5 +90,33 @@ class Boot {
         }
 
         return temp;
+    }
+
+    public static void getAllPathsInMaze_Optimized(int sourceX, int sourceY, int targetX, int targetY, String ans){
+
+        if(sourceX == targetX && sourceY == targetY){
+            System.out.println(ans);
+            return;
+        }
+
+        List<String> temp = new ArrayList<>();
+
+        for(int i=1; i<=targetX; i++){  //max how many times we can move down...
+            if(sourceX < targetX){
+                getAllPathsInMaze_Optimized(sourceX+i, sourceY, targetX, targetY, ans+"v"+i);  //taking steps downwards.
+            }
+        }
+
+        for(int i=1; i<=targetY; i++) {   //max how many times we can move right...
+            if (sourceY < targetY) {
+                getAllPathsInMaze_Optimized(sourceX, sourceY + i, targetX, targetY, ans+"h"+i);  //taking steps right.
+            }
+        }
+
+        for(int i=1; i<=targetX && i<=targetY; i++) { //max how many times we can move diagonally...
+            if (sourceX < targetX && sourceY < targetY) {
+                getAllPathsInMaze_Optimized(sourceX+i, sourceY + i, targetX, targetY, ans  +"d" + i);  //taking steps diagonally.
+            }
+        }
     }
 }
