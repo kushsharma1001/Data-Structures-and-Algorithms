@@ -1,0 +1,54 @@
+import java.util.HashMap;
+import java.util.Map;
+/*
+Given that 1->A and 26-> Z, Now, find all combinations of 123-> ABC,LC,AW  (representing 1 2 3, 12 3, 1 23)
+*/
+class Boot {
+    private static Map<Integer, Character> map = new HashMap<>();
+    static{
+        char ch = 'a';
+        for(int i=1;i<=26;i++){
+                map.put(i, ch);
+                ch++;
+        }
+    }
+
+    public static void main(String args[])
+    {
+        printAllEncodings("123", "");
+    }
+
+    public static void printAllEncodings(String str, String ans){
+
+        if(str== null || str.length() ==0 || str.equals("") ){
+           System.out.println(ans);
+            return;
+        }
+        if(str.length() == 1 && str.startsWith("0")){
+            return;
+        }
+        if(str.length() == 1){
+            char c = str.charAt(0);
+            ans+= map.get(Integer.parseInt(c+""));
+            System.out.println(ans);
+            return;
+        }
+
+
+            char firstChar = str.charAt(0);
+            String ros = str.substring(1);
+            if(firstChar == '0'){
+                return;
+            }
+            else{
+                printAllEncodings(ros, ans+map.get(Integer.parseInt(firstChar+"")));
+            }
+
+        String firstTwoChars = str.substring(0,2);
+        ros = str.substring(2);
+        if(!firstTwoChars.startsWith("0") && Integer.parseInt(firstTwoChars) <= 26){
+            printAllEncodings(ros, ans+ map.get(Integer.parseInt(firstTwoChars+"")));
+        }
+
+    }
+}
